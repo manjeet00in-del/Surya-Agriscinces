@@ -1,317 +1,1078 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surya Agrisciences</title>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;}
-        .container{max-width:1200px;margin:0 auto;padding:0 24px;}
-        .navbar{background:#fff;padding:16px 0;border-bottom:3px solid #1a7a2e;position:sticky;top:0;z-index:999;}
-        .nav-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
-        .logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
-        .logo-icon{width:56px;height:56px;background:#1a7a2e;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:900;}
-        .logo-text .company{font-size:24px;font-weight:900;color:#1a7a2e;}
-        .logo-text .company span{color:#f5b042;}
-        .nav-links{display:flex;gap:36px;list-style:none;font-weight:600;}
-        .nav-links a{text-decoration:none;color:#333;transition:color 0.3s;}
-        .nav-links a:hover{color:#1a7a2e;}
-        .nav-cta{background:#1a7a2e;color:#fff!important;padding:12px 34px!important;border-radius:50px!important;}
-        .hero{padding:120px 0 70px;display:flex;align-items:center;gap:60px;flex-wrap:wrap;background:linear-gradient(135deg,#f0faf0,#fff);}
-        .hero-left{flex:1 1 50%;}
-        .hero-left .badge{background:#1a7a2e;color:#fff;padding:8px 28px;border-radius:50px;font-size:14px;font-weight:800;display:inline-block;margin-bottom:20px;}
-        .hero-left h1{font-size:60px;font-family:'Playfair Display',serif;line-height:1.05;margin-bottom:18px;}
-        .hero-left h1 .highlight{color:#1a7a2e;}
-        .hero-left p{font-size:20px;color:#444;max-width:520px;margin-bottom:36px;line-height:1.8;}
-        .btn-primary{background:#1a7a2e;color:#fff;padding:18px 50px;border-radius:60px;text-decoration:none;font-weight:800;font-size:18px;display:inline-block;box-shadow:0 6px 30px rgba(26,122,46,0.35);}
-        .btn-secondary{background:#fff;color:#1a7a2e;padding:18px 50px;border-radius:60px;text-decoration:none;font-weight:700;font-size:18px;border:3px solid #1a7a2e;display:inline-block;}
-        .btn-group{display:flex;gap:18px;flex-wrap:wrap;}
-        .hero-right{flex:1 1 35%;}
-        .hero-card{background:#fff;border-radius:30px;padding:40px 35px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.06);border:2px solid #eaf3ea;}
-        .hero-card .icon{font-size:72px;display:block;margin-bottom:10px;}
-        .hero-card h3{font-size:28px;font-weight:900;color:#1a7a2e;}
-        .hero-card .tagline{font-size:16px;color:#f5b042;font-weight:700;letter-spacing:2px;}
-        .hero-card .stats{display:flex;justify-content:center;gap:30px;margin-top:20px;padding-top:20px;border-top:2px solid #eaf3ea;}
-        .hero-card .stats .num{font-size:32px;font-weight:900;color:#1a7a2e;display:block;}
-        .hero-card .stats .label{font-size:13px;color:#888;font-weight:600;}
-        .trust-bar{background:#1a7a2e;padding:28px 0;border-top:4px solid #f5b042;border-bottom:4px solid #f5b042;}
-        .trust-grid{display:flex;justify-content:space-around;flex-wrap:wrap;gap:20px;text-align:center;}
-        .trust-item{font-weight:700;font-size:18px;color:#fff;display:flex;align-items:center;gap:12px;}
-        .trust-item .emoji{font-size:28px;}
-        .trust-item small{font-weight:400;color:rgba(255,255,255,0.6);font-size:14px;}
-        .section{padding:80px 0;}
-        .section-title{font-family:'Playfair Display',serif;font-size:46px;text-align:center;margin-bottom:4px;}
-        .section-title span{color:#1a7a2e;}
-        .section-sub{text-align:center;color:#666;max-width:580px;margin:0 auto 50px;font-size:18px;}
-        .glow-line{width:100px;height:5px;background:linear-gradient(90deg,#1a7a2e,#f5b042);border-radius:4px;margin:10px auto 0;}
-        .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:30px;}
-        .product-card{background:#fff;border:2px solid #eaf3ea;border-radius:24px;padding:34px 24px 28px;text-align:center;transition:all 0.4s;}
-        .product-card:hover{transform:translateY(-12px);border-color:#1a7a2e;box-shadow:0 20px 60px rgba(26,122,46,0.08);}
-        .product-card .icon{font-size:56px;display:block;margin-bottom:10px;}
-        .product-card h3{font-size:24px;color:#1a7a2e;font-weight:800;}
-        .product-card .variety{font-size:14px;color:#888;font-weight:600;}
-        .product-card .badge{background:#f5b042;color:#fff;padding:6px 20px;border-radius:50px;font-size:13px;font-weight:800;display:inline-block;margin-top:8px;}
-        .product-card .features{margin-top:16px;font-size:15px;color:#444;line-height:2.2;text-align:left;}
-        .product-card .features span{display:block;font-weight:500;}
-        .product-card .features span::before{content:'✅ ';color:#1a7a2e;}
-        .float-buttons{position:fixed;bottom:30px;right:30px;z-index:999;display:flex;flex-direction:column;gap:12px;}
-        .float-btn{display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:60px;text-decoration:none;font-weight:700;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,0.15);transition:all 0.3s;}
-        .float-btn:hover{transform:translateY(-4px)scale(1.05);}
-        .float-call{background:#1a7a2e;}
-        .float-whatsapp{background:#25D366;}
-        .footer{padding:50px 0 24px;border-top:3px solid #1a7a2e;background:#f5faf5;}
-        .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px;}
-        .footer-col h4{font-size:18px;color:#1a7a2e;margin-bottom:12px;font-weight:800;}
-        .footer-col a{display:block;color:#666;text-decoration:none;margin-bottom:6px;font-weight:500;}
-        .footer-col a:hover{color:#1a7a2e;}
-        .footer-bottom{text-align:center;border-top:1px solid #eaf3ea;padding-top:20px;font-size:14px;color:#aaa;}
-        .footer-bottom strong{color:#1a7a2e;}
-        @media(max-width:768px){
-            .hero-left h1{font-size:38px;}
-            .nav-flex{flex-direction:column;}
-            .nav-links{justify-content:center;margin-top:12px;gap:20px;flex-wrap:wrap;}
-            .hero{padding:140px 0 40px;}
-            .hero-card .stats{flex-direction:column;gap:12px;}
-            .section-title{font-size:32px;}
-            .btn-primary,.btn-secondary{padding:14px 32px;font-size:15px;}
-            .trust-item{font-size:15px;}
-            .trust-item .emoji{font-size:22px;}
-        }
-        @media(max-width:480px){
-            .hero-left h1{font-size:30px;}
-            .hero-left p{font-size:17px;}
-            .products-grid{grid-template-columns:1fr;}
-            .float-btn{padding:10px 16px;font-size:13px;}
-            .float-btn-label{display:none;}
-        }
-    </style>
+
+    <meta name="description"
+        content="Surya Agrisciences - Agriculture seeds, crop nutrition, crop protection and soil solutions.">
+
+    <meta name="keywords"
+        content="Surya Agrisciences, agriculture, seeds, paddy seeds, crop nutrition, crop protection, soil solutions">
+
+    <meta name="author" content="Surya Agrisciences">
+
+    <title>Surya Agrisciences | Better Farming. Better Future.</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="container nav-flex">
-            <a href="#" class="logo">
-                <div class="logo-icon">S</div>
-                <div class="logo-text">
-                    <span class="company">Surya <span>Agrisciences</span></span>
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <a href="#home" class="logo">
+
+            <div class="logo-icon">S</div>
+
+            <div>
+                <strong>Surya</strong>
+                <span>Agrisciences</span>
+            </div>
+
+        </a>
+
+
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
+
+
+        <nav id="navMenu">
+
+            <a href="#home">Home</a>
+
+            <a href="#products">Products</a>
+
+            <a href="#about">About</a>
+
+            <a href="#why-us">Why Us</a>
+
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+
+        <a href="#contact" class="nav-button">
+            Get Quote
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-container">
+
+        <div class="hero-content">
+
+            <span class="hero-tag">
+                🌾 Agriculture Solutions
+            </span>
+
+
+            <h1>
+                Better Farming.
+                <span>Better Future.</span>
+            </h1>
+
+
+            <p>
+                Quality agriculture inputs and practical crop solutions
+                designed to support farmers at every stage of cultivation.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#products" class="btn primary">
+                    Explore Products →
+                </a>
+
+                <a href="#contact" class="btn secondary">
+                    Contact Us
+                </a>
+
+            </div>
+
+
+            <div class="hero-points">
+
+                <div>
+                    <strong>Seeds</strong>
+                    <small>Quality focused</small>
                 </div>
+
+                <div>
+                    <strong>Nutrition</strong>
+                    <small>Crop focused</small>
+                </div>
+
+                <div>
+                    <strong>Protection</strong>
+                    <small>Field focused</small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="sun-icon">
+                ☀️
+            </div>
+
+            <small>
+                FROM SEED TO HARVEST
+            </small>
+
+            <h2>
+                Complete Crop Cycle Support
+            </h2>
+
+            <p>
+                Choose the right input, use it responsibly and
+                monitor your crop throughout the season.
+            </p>
+
+            <a href="#contact">
+                Request Product Guidance →
             </a>
-            <ul class="nav-links">
-                <li><a href="#products">Products</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#enquiry">Enquiry</a></li>
-                <li><a href="#enquiry" class="nav-cta">📞 Get Quote</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- FLOATING BUTTONS -->
-    <div class="float-buttons">
-        <a href="https://wa.me/919876543210" target="_blank" class="float-btn float-whatsapp">
-            <span class="icon">💬</span>
-            <span class="float-btn-label">WhatsApp</span>
-        </a>
-        <a href="tel:+919876543210" class="float-btn float-call">
-            <span class="icon">📞</span>
-            <span class="float-btn-label">Call Now</span>
-        </a>
+        </div>
+
     </div>
 
-    <!-- HERO -->
-    <section class="container hero">
-        <div class="hero-left">
-            <div class="badge">🌾 Premium Agriculture Solutions</div>
-            <h1><span class="highlight">Surya Agrisciences</span><br>Better Farming.<br>Better Future.</h1>
-            <p>Empowering farmers with high-yield seeds and advanced crop solutions for a prosperous harvest.</p>
-            <div class="btn-group">
-                <a href="#enquiry" class="btn-primary">📦 Order Now</a>
-                <a href="#products" class="btn-secondary">Explore Products →</a>
-            </div>
-        </div>
-        <div class="hero-right">
-            <div class="hero-card">
-                <span class="icon">🌾</span>
-                <h3>Surya Agrisciences</h3>
-                <div class="tagline">Better Farming • Better Future</div>
-                <div class="stats">
-                    <div><span class="num">5000+</span><span class="label">Farmers</span></div>
-                    <div><span class="num">95%</span><span class="label">Germination</span></div>
-                    <div><span class="num">25%</span><span class="label">Higher Yield</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
+</section>
 
-    <!-- TRUST BAR -->
-    <div class="trust-bar">
-        <div class="container trust-grid">
-            <span class="trust-item"><span class="emoji">✅</span> 5000+ Farmers <small>trust us</small></span>
-            <span class="trust-item"><span class="emoji">🌱</span> 95%+ Germination <small>rate</small></span>
-            <span class="trust-item"><span class="emoji">🏆</span> 25% Higher Yield <small>than local varieties</small></span>
-            <span class="trust-item"><span class="emoji">🚚</span> PAN India <small>delivery</small></span>
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+    <div class="container stats-grid">
+
+        <div>
+            <strong>01</strong>
+            <span>
+                Quality-led<br>
+                product selection
+            </span>
         </div>
+
+        <div>
+            <strong>02</strong>
+            <span>
+                Farmer-first<br>
+                support
+            </span>
+        </div>
+
+        <div>
+            <strong>03</strong>
+            <span>
+                Crop-cycle<br>
+                solutions
+            </span>
+        </div>
+
+        <div>
+            <strong>04</strong>
+            <span>
+                Bulk & dealer<br>
+                enquiries
+            </span>
+        </div>
+
     </div>
 
-    <!-- PRODUCTS -->
-    <section class="section container" id="products">
-        <h2 class="section-title">Our <span>Products</span></h2>
-        <div class="glow-line"></div>
-        <p class="section-sub">Premium agriculture solutions from <strong>Surya Agrisciences</strong> — developed for Indian farmers.</p>
+</section>
+
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="section" id="products">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span>
+                    OUR PRODUCTS
+                </span>
+
+                <h2>
+                    Solutions for Every Stage
+                </h2>
+
+            </div>
+
+            <p>
+                Explore our agriculture product categories
+                designed around real crop-cycle requirements.
+            </p>
+
+        </div>
+
+
+
         <div class="products-grid">
-            <div class="product-card">
-                <span class="icon">🌾</span>
-                <h3>Paddy Seeds</h3>
-                <div class="variety">High Yielding Variety</div>
-                <span class="badge">⭐ Best Seller</span>
-                <div class="features">
-                    <span>High germination rate</span>
-                    <span>Disease resistant</span>
-                    <span>Maximum yield</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <span class="icon">🌱</span>
-                <h3>Crop Nutrition</h3>
-                <div class="variety">Balanced Fertilizers</div>
-                <span class="badge">🌿 Organic</span>
-                <div class="features">
-                    <span>Better growth</span>
-                    <span>Rich in nutrients</span>
-                    <span>Eco-friendly</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <span class="icon">🧪</span>
-                <h3>Crop Protection</h3>
-                <div class="variety">Pest & Disease Control</div>
-                <span class="badge">🛡️ Advanced</span>
-                <div class="features">
-                    <span>Effective protection</span>
-                    <span>Safe for crops</span>
-                    <span>Better harvest</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <span class="icon">🌿</span>
-                <h3>Soil Solutions</h3>
-                <div class="variety">Soil Health Management</div>
-                <span class="badge">🌍 Sustainable</span>
-                <div class="features">
-                    <span>Improves soil health</span>
-                    <span>Nutrient management</span>
-                    <span>Better yield</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="section container" id="testimonials" style="background:#f5faf5;border-radius:40px;margin:0 auto 80px;padding:80px 24px;">
-        <h2 class="section-title">What <span>Farmers</span> Say</h2>
-        <div class="glow-line"></div>
-        <p class="section-sub">Real stories from farmers who trust Surya Agrisciences.</p>
-        <div class="testimonials-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:1100px;margin:0 auto;">
-            <div class="testimonial-card" style="background:#fff;border:2px solid #eaf3ea;border-radius:24px;padding:30px 28px;text-align:center;">
-                <span class="avatar" style="font-size:60px;display:block;margin-bottom:10px;">👨‍🌾</span>
-                <div class="stars" style="color:#f5b042;font-size:20px;letter-spacing:2px;">⭐⭐⭐⭐⭐</div>
-                <p class="quote" style="font-size:16px;color:#444;font-style:italic;line-height:1.7;margin:12px 0;">"Surya Agrisciences ki seeds ne meri paidaish 30% tak badha di. Bahut khush hoon!"</p>
-                <div class="name" style="font-weight:700;color:#1a7a2e;font-size:17px;">- Rajesh Kumar</div>
-                <div class="location" style="font-size:14px;color:#888;">Lucknow, Uttar Pradesh</div>
-            </div>
-            <div class="testimonial-card" style="background:#fff;border:2px solid #eaf3ea;border-radius:24px;padding:30px 28px;text-align:center;">
-                <span class="avatar" style="font-size:60px;display:block;margin-bottom:10px;">👩‍🌾</span>
-                <div class="stars" style="color:#f5b042;font-size:20px;letter-spacing:2px;">⭐⭐⭐⭐⭐</div>
-                <p class="quote" style="font-size:16px;color:#444;font-style:italic;line-height:1.7;margin:12px 0;">"Crop protection products ne mere khet ko bimariyon se bachaya. Bahut effective!"</p>
-                <div class="name" style="font-weight:700;color:#1a7a2e;font-size:17px;">- Sunita Devi</div>
-                <div class="location" style="font-size:14px;color:#888;">Azamgarh, Uttar Pradesh</div>
-            </div>
-            <div class="testimonial-card" style="background:#fff;border:2px solid #eaf3ea;border-radius:24px;padding:30px 28px;text-align:center;">
-                <span class="avatar" style="font-size:60px;display:block;margin-bottom:10px;">👨‍🌾</span>
-                <div class="stars" style="color:#f5b042;font-size:20px;letter-spacing:2px;">⭐⭐⭐⭐⭐</div>
-                <p class="quote" style="font-size:16px;color:#444;font-style:italic;line-height:1.7;margin:12px 0;">"Soil solutions ne meri zameen ki quality improve ki. Ab aur achhi fasal hoti hai!"</p>
-                <div class="name" style="font-weight:700;color:#1a7a2e;font-size:17px;">- Mohd. Irfan</div>
-                <div class="location" style="font-size:14px;color:#888;">Sitapur, Uttar Pradesh</div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ENQUIRY -->
-    <section class="section container" id="enquiry">
-        <div class="enquiry-section" style="background:linear-gradient(135deg,#f5faf5,#fff);border:2px solid #eaf3ea;border-radius:30px;padding:50px 45px;display:flex;gap:50px;flex-wrap:wrap;">
-            <div class="enquiry-left" style="flex:1 1 38%;">
-                <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:#1a1a1a;margin-bottom:10px;">Bulk Enquiry</h2>
-                <p style="color:#666;font-size:17px;">Looking for wholesale supply, contract farming, or custom solutions? Let's talk.</p>
-                <div class="contact-info" style="margin-top:24px;font-size:16px;color:#444;line-height:2.4;font-weight:500;">
-                    <div>📞 +91-98765 43210</div>
-                    <div>✉️ info@suryaagrisciences.com</div>
-                    <div>📍 Lucknow, Uttar Pradesh, India</div>
-                    <div style="color:#888;font-size:14px;margin-top:8px;">🕐 Mon–Sat, 9:00 AM – 6:00 PM</div>
-                </div>
-            </div>
-            <div class="enquiry-right" style="flex:1 1 50%;background:#fff;padding:34px 36px;border-radius:20px;border:2px solid #eaf3ea;">
-                <h3 style="font-size:24px;color:#1a7a2e;margin-bottom:20px;font-weight:800;">📋 Get a Quote</h3>
-                <form action="#" method="POST">
-                    <div class="form-group" style="margin-bottom:18px;">
-                        <label style="font-weight:700;font-size:14px;color:#333;display:block;margin-bottom:4px;">Full Name *</label>
-                        <input type="text" placeholder="e.g. Rajesh Kumar" required style="width:100%;padding:14px 18px;background:#f5faf5;border:2px solid #eaf3ea;border-radius:14px;font-size:15px;font-family:inherit;color:#1a1a1a;" />
-                    </div>
-                    <div class="form-group" style="margin-bottom:18px;">
-                        <label style="font-weight:700;font-size:14px;color:#333;display:block;margin-bottom:4px;">Mobile Number *</label>
-                        <input type="tel" placeholder="98765 43210" required style="width:100%;padding:14px 18px;background:#f5faf5;border:2px solid #eaf3ea;border-radius:14px;font-size:15px;font-family:inherit;color:#1a1a1a;" />
-                    </div>
-                    <div class="form-group" style="margin-bottom:18px;">
-                        <label style="font-weight:700;font-size:14px;color:#333;display:block;margin-bottom:4px;">Email</label>
-                        <input type="email" placeholder="your@email.com" style="width:100%;padding:14px 18px;background:#f5faf5;border:2px solid #eaf3ea;border-radius:14px;font-size:15px;font-family:inherit;color:#1a1a1a;" />
-                    </div>
-                    <div class="form-group" style="margin-bottom:18px;">
-                        <label style="font-weight:700;font-size:14px;color:#333;display:block;margin-bottom:4px;">Product Interest *</label>
-                        <select required style="width:100%;padding:14px 18px;background:#f5faf5;border:2px solid #eaf3ea;border-radius:14px;font-size:15px;font-family:inherit;color:#1a1a1a;">
-                            <option value="">Select a product</option>
-                            <option>Paddy Seeds</option>
-                            <option>Crop Nutrition</option>
-                            <option>Crop Protection</option>
-                            <option>Soil Solutions</option>
-                            <option>Custom / Contract Farming</option>
-                        </select>
-                    </div>
-                    <div class="form-group" style="margin-bottom:18px;">
-                        <label style="font-weight:700;font-size:14px;color:#333;display:block;margin-bottom:4px;">Message</label>
-                        <textarea placeholder="Your requirements, location, timeline..." style="width:100%;padding:14px 18px;background:#f5faf5;border:2px solid #eaf3ea;border-radius:14px;font-size:15px;font-family:inherit;color:#1a1a1a;height:80px;resize:vertical;"></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit" style="background:linear-gradient(135deg,#1a7a2e,#0f5a22);color:#fff;padding:16px;border:none;border-radius:14px;font-weight:800;font-size:18px;cursor:pointer;width:100%;transition:all 0.3s;box-shadow:0 4px 25px rgba(26,122,46,0.25);">🌾 Submit Enquiry</button>
-                </form>
-            </div>
-        </div>
-    </section>
+            <!-- PRODUCT 1 -->
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Surya <span style="color:#f5b042;">Agrisciences</span></h4>
-                    <p style="color:#666;max-width:260px;">Empowering Indian farmers with premium agriculture solutions since 2013.</p>
+            <div class="product-card">
+
+                <div class="product-icon">
+                    🌾
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <a href="#products">Products</a>
-                    <a href="#testimonials">Testimonials</a>
-                    <a href="#enquiry">Enquiry</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <a href="tel:+919876543210">📞 +91-98765 43210</a>
-                    <a href="mailto:info@suryaagrisciences.com">✉️ info@suryaagrisciences.com</a>
-                    <a href="#">📍 Lucknow, Uttar Pradesh</a>
-                </div>
+
+                <small>
+                    SEEDS
+                </small>
+
+                <h3>
+                    Paddy Seeds
+                </h3>
+
+                <p>
+                    Quality seed options for farmers looking
+                    for dependable crop establishment and
+                    strong field performance.
+                </p>
+
+                <ul>
+
+                    <li>Quality-focused seeds</li>
+
+                    <li>Variety selection support</li>
+
+                    <li>Crop-specific guidance</li>
+
+                </ul>
+
+                <a href="#contact"
+                   onclick="selectProduct('Paddy Seeds')">
+
+                    Enquire →
+
+                </a>
+
             </div>
-            <div class="footer-bottom">
-                &copy; 2026 <strong>Surya Agrisciences</strong>. All rights reserved.
+
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="product-card">
+
+                <div class="product-icon">
+                    🌱
+                </div>
+
+                <small>
+                    NUTRITION
+                </small>
+
+                <h3>
+                    Crop Nutrition
+                </h3>
+
+                <p>
+                    Nutrition solutions supporting balanced
+                    crop growth and responsible nutrient
+                    management.
+                </p>
+
+                <ul>
+
+                    <li>Growth support</li>
+
+                    <li>Nutrient management</li>
+
+                    <li>Application guidance</li>
+
+                </ul>
+
+                <a href="#contact"
+                   onclick="selectProduct('Crop Nutrition')">
+
+                    Enquire →
+
+                </a>
+
             </div>
+
+
+
+            <!-- PRODUCT 3 -->
+
+            <div class="product-card">
+
+                <div class="product-icon">
+                    🛡️
+                </div>
+
+                <small>
+                    CROP CARE
+                </small>
+
+                <h3>
+                    Crop Protection
+                </h3>
+
+                <p>
+                    Crop-care solutions and guidance for
+                    managing common pest and disease
+                    challenges.
+                </p>
+
+                <ul>
+
+                    <li>Problem identification</li>
+
+                    <li>Responsible use</li>
+
+                    <li>Crop-stage guidance</li>
+
+                </ul>
+
+                <a href="#contact"
+                   onclick="selectProduct('Crop Protection')">
+
+                    Enquire →
+
+                </a>
+
+            </div>
+
+
+
+            <!-- PRODUCT 4 -->
+
+            <div class="product-card">
+
+                <div class="product-icon">
+                    🌍
+                </div>
+
+                <small>
+                    SOIL HEALTH
+                </small>
+
+                <h3>
+                    Soil Solutions
+                </h3>
+
+                <p>
+                    Practical soil-management solutions
+                    supporting healthier soil and efficient
+                    nutrient use.
+                </p>
+
+                <ul>
+
+                    <li>Soil health focus</li>
+
+                    <li>Nutrient efficiency</li>
+
+                    <li>Long-term approach</li>
+
+                </ul>
+
+                <a href="#contact"
+                   onclick="selectProduct('Soil Solutions')">
+
+                    Enquire →
+
+                </a>
+
+            </div>
+
         </div>
-    </footer>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= WHY US ================= -->
+
+<section class="why-section" id="why-us">
+
+    <div class="container why-grid">
+
+        <div class="field-image">
+
+            <div class="field-badge">
+
+                🌿
+
+                <br>
+
+                FIELD
+                <br>
+
+                TO FUTURE
+
+            </div>
+
+        </div>
+
+
+        <div class="why-content">
+
+            <span>
+                WHY SURYA AGRISCIENCES
+            </span>
+
+            <h2>
+                Practical Solutions,
+                Not Just Products.
+            </h2>
+
+            <p>
+                Our goal is to make agriculture inputs easier
+                to understand and easier to use responsibly.
+                We focus on crop requirements, product
+                information and farmer support.
+            </p>
+
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Crop-focused approach
+                        </strong>
+
+                        <p>
+                            Solutions organised around
+                            real crop-cycle requirements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Clear product information
+                        </strong>
+
+                        <p>
+                            Simple information helping
+                            farmers make better choices.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Business & Bulk Support
+                        </strong>
+
+                        <p>
+                            Dealer, distributor and
+                            wholesale discussions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="section about" id="about">
+
+    <div class="container about-grid">
+
+        <div>
+
+            <span>
+                ABOUT SURYA AGRISCIENCES
+            </span>
+
+            <h2>
+                Building a Trusted
+                Agriculture Brand.
+            </h2>
+
+            <p>
+                Surya Agrisciences is an agriculture-solutions
+                brand focused on serving farmers, dealers and
+                business partners.
+            </p>
+
+            <p>
+                Our product portfolio focuses on seeds,
+                crop nutrition, crop protection and soil
+                solutions.
+            </p>
+
+
+            <div class="mini-cards">
+
+                <div>
+                    <strong>
+                        Seeds
+                    </strong>
+
+                    <small>
+                        Crop establishment
+                    </small>
+                </div>
+
+                <div>
+                    <strong>
+                        Nutrition
+                    </strong>
+
+                    <small>
+                        Balanced growth
+                    </small>
+                </div>
+
+                <div>
+                    <strong>
+                        Protection
+                    </strong>
+
+                    <small>
+                        Crop care
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="promise">
+
+            <small>
+                OUR PROMISE
+            </small>
+
+            <h3>
+                Information you can understand.
+                Support you can use.
+            </h3>
+
+            <p>
+                Replace this section with your verified
+                company history, registrations, certifications
+                and business details before publishing.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= TESTIMONIALS ================= -->
+
+<section class="section testimonials">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div>
+
+                <span>
+                    FARMER VOICE
+                </span>
+
+                <h2>
+                    Built Around Farmer Needs
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="testimonial-grid">
+
+
+            <div class="testimonial">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    “The enquiry process was simple and
+                    the product information was easy to
+                    understand.”
+                </p>
+
+                <strong>
+                    Farmer Feedback
+                </strong>
+
+                <small>
+                    Uttar Pradesh
+                </small>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    “Good support starts with understanding
+                    the crop problem before suggesting
+                    an input.”
+                </p>
+
+                <strong>
+                    Farmer Feedback
+                </strong>
+
+                <small>
+                    Uttar Pradesh
+                </small>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    “A clear product catalogue makes it
+                    easier for us to discuss requirements.”
+                </p>
+
+                <strong>
+                    Business Partner Feedback
+                </strong>
+
+                <small>
+                    India
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <p class="sample-note">
+            Sample testimonials shown for demonstration.
+            Replace them with genuine customer testimonials
+            before publishing.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <div class="container cta-container">
+
+        <div>
+
+            <span>
+                NEED A BULK QUOTE?
+            </span>
+
+            <h2>
+                Let's Discuss Your Requirement.
+            </h2>
+
+            <p>
+                Farmers, dealers, distributors and
+                institutions can send their requirements.
+            </p>
+
+        </div>
+
+
+        <a href="#contact" class="btn white">
+            Send Enquiry →
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CONTACT ================= -->
+
+<section class="section contact" id="contact">
+
+    <div class="container contact-grid">
+
+
+        <div class="contact-info">
+
+            <span>
+                CONTACT SURYA AGRISCIENCES
+            </span>
+
+            <h2>
+                Tell Us What You Need.
+            </h2>
+
+            <p>
+                Fill the form and send your requirement
+                directly through WhatsApp.
+            </p>
+
+
+            <div class="contact-detail">
+
+                <div>
+                    📞
+                </div>
+
+                <div>
+
+                    <small>
+                        CALL / WHATSAPP
+                    </small>
+
+                    <strong id="phoneDisplay">
+                        +91 XXXXX XXXXX
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-detail">
+
+                <div>
+                    ✉️
+                </div>
+
+                <div>
+
+                    <small>
+                        EMAIL
+                    </small>
+
+                    <strong>
+                        your-email@example.com
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-detail">
+
+                <div>
+                    📍
+                </div>
+
+                <div>
+
+                    <small>
+                        LOCATION
+                    </small>
+
+                    <strong>
+                        Lucknow, Uttar Pradesh, India
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <form id="enquiryForm" class="contact-form">
+
+            <label>
+
+                Full Name *
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                >
+
+            </label>
+
+
+            <div class="form-row">
+
+                <label>
+
+                    Mobile Number *
+
+                    <input
+                        type="tel"
+                        name="mobile"
+                        placeholder="98765 43210"
+                        required
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Product Interest *
+
+                    <select
+                        name="product"
+                        id="productSelect"
+                        required
+                    >
+
+                        <option value="">
+                            Select Product
+                        </option>
+
+                        <option>
+                            Paddy Seeds
+                        </option>
+
+                        <option>
+                            Crop Nutrition
+                        </option>
+
+                        <option>
+                            Crop Protection
+                        </option>
+
+                        <option>
+                            Soil Solutions
+                        </option>
+
+                        <option>
+                            Dealer / Bulk Enquiry
+                        </option>
+
+                    </select>
+
+                </label>
+
+            </div>
+
+
+            <label>
+
+                Email
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="your@email.com"
+                >
+
+            </label>
+
+
+            <label>
+
+                Your Requirement
+
+                <textarea
+                    name="message"
+                    rows="5"
+                    placeholder="Tell us your crop, quantity or requirement..."
+                ></textarea>
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="btn primary full"
+            >
+
+                🌾 Send Enquiry on WhatsApp
+
+            </button>
+
+
+            <p class="form-note">
+                Your enquiry will open directly in WhatsApp.
+            </p>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container footer-grid">
+
+        <div>
+
+            <div class="footer-logo">
+
+                <div class="logo-icon">
+                    S
+                </div>
+
+                <div>
+
+                    <strong>
+                        Surya
+                    </strong>
+
+                    <span>
+                        Agrisciences
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p>
+                Better Farming. Better Future.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#products">
+                Products
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                Lucknow, Uttar Pradesh, India
+            </p>
+
+            <p id="footerPhone">
+                +91 XXXXX XXXXX
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © <span id="year"></span>
+        Surya Agrisciences.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
